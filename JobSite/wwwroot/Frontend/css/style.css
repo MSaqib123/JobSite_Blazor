@@ -2243,7 +2243,7 @@ nav.navbar li.dropdown ul.dropdown-menu {
 }
 /*--------- Create Account Button  Style----------*/
 nav.navbar.bootsnav ul.nav > li >a.btn-signup.red-btn {
-	background: #26ae61;
+	background: #26ae61 !important;
 	padding: 11px 20px;
 	color: #ffffff !important;
 	border-radius: 6px;
