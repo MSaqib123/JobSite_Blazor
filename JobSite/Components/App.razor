@@ -4,28 +4,6 @@
 <head>
     <base href="/" />
 
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Favicon Icon -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="Frontend/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Frontend/plugins/bootstrap/css/bootstrap-select.min.css">
-    <link href="Frontend/plugins/icons/css/icons.css" rel="stylesheet">
-    <link href="Frontend/plugins/animate/animate.css" rel="stylesheet">
-    <link href="Frontend/plugins/bootstrap/css/bootsnav.css" rel="stylesheet">
-    <link rel="stylesheet" href="Frontend/plugins/nice-select/css/nice-select.css">
-    <link href="Frontend/plugins/aos-master/aos.css" rel="stylesheet">
-    <link href="Frontend/css/style.css" rel="stylesheet">
-    <link href="Frontend/css/responsive.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&amp;display=swap" rel="stylesheet">
-
     <HeadOutlet />
 </head>
 
@@ -33,24 +11,8 @@
     <Routes />
 
 
-    <!-- ==== Frontend ==== -->
-    <script src="Frontend/js/jquery.min.js"></script>
-    <script src="Frontend/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="Frontend/plugins/bootstrap/js/bootsnav.js"></script>
-    <script src="Frontend/js/viewportchecker.js"></script>
-    <script src="Frontend/js/slick.js"></script>
-    <script src="Frontend/plugins/bootstrap/js/wysihtml5-0.3.0.js"></script>
-    <script src="Frontend/plugins/bootstrap/js/bootstrap-wysihtml5.js"></script>
-    <script src="Frontend/plugins/aos-master/aos.js"></script>
-    <script src="Frontend/plugins/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="Frontend/js/custom.js"></script>
-    <script>
-        $(window).load(function() {
-          $(".page_preloader").fadeOut("slow");;
-        });
-        AOS.init();
-    </script>
-
+   <SectionOutlet SectionName="FrontentLink"></SectionOutlet>
+   <SectionOutlet SectionName="AdminLink"></SectionOutlet>
 
     <script src="_framework/blazor.web.js"></script>
 </body>
