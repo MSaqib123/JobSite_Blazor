@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Admin\" />
-    <Folder Include="wwwroot\Frontend\" />
   </ItemGroup>
 
 </Project>
