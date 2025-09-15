@@ -1,4 +1,5 @@
-﻿@page "/Admin/Category/Create"
+﻿@page "/Admin/Category/Upsert"
+@page "/Admin/Category/Upsert/{Id:int}"
 @inject DataDbContext dbContext;
 @inject NavigationManager NavigationManager
 @layout AdminLayout
@@ -7,7 +8,9 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Add Category</h1>
+    <h1 class="h3 mb-0 text-gray-800">
+        @(Id == 0 ? "Create Category" : "Edit Category")
+    </h1>
     <a href="/Admin/Category/Index" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to Categories
     </a>
@@ -21,7 +24,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Category Details</h6>
             </div>
             <div class="card-body">
-                <EditForm Enhance=true Model="category" FormName="CreateCategoryForm" OnValidSubmit="CreateCategoryMethod">
+                <EditForm Enhance=true Model="category" FormName="CreateCategoryForm" OnValidSubmit="HandleSubmit">
                     <DataAnnotationsValidator />
 
                     <!-- Name Field -->
@@ -60,15 +63,45 @@
 
 
 @code {
+    [Parameter]
+    public int Id { get; set; }
+
     [SupplyParameterFromForm]
     public Category category { get; set; } = new();
 
 
-    private void CreateCategoryMethod()
+    protected override async Task OnInitializedAsync()
     {
-        dbContext.Categories.Add(category);
-        dbContext.SaveChanges();
-        NavigationManager.NavigateTo("/Admin/Category/Index");
+        if (Id > 0)
+        {
+            // Load existing category for editing
+            category = await dbContext.Categories.FindAsync(Id);
+            if (category == null)
+            {
+                NavigationManager.NavigateTo("/Admin/Categories"); // Redirect if not found
+            }
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            if (Id == 0) // Create
+            {
+                dbContext.Categories.Add(category);
+            }
+            else // Update
+            {
+                dbContext.Categories.Update(category);
+            }
+            await dbContext.SaveChangesAsync();
+            NavigationManager.NavigateTo("/Admin/Categories"); // Redirect to list
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving category: {ex.Message}");
+        }
     }
 
 
