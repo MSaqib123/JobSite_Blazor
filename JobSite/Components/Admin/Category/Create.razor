@@ -1,7 +1,6 @@
 ﻿@page "/Admin/Category/Create"
-@using JobSite.Data
-@using JobSite.Models
 @inject DataDbContext dbContext;
+@inject NavigationManager NavigationManager
 @layout AdminLayout
 
 
@@ -23,12 +22,14 @@
             </div>
             <div class="card-body">
                 <EditForm Enhance=true Model="category" FormName="CreateCategoryForm" OnValidSubmit="CreateCategoryMethod">
+                    <DataAnnotationsValidator />
 
                     <!-- Name Field -->
                     <div class="form-group">
                         <label for="name" class="font-weight-bold text-gray-800">Category Name</label>
                         <InputText id="name" class="form-control" placeholder="Enter category name" @bind-value="category.Name"></InputText>
                         @* <small class="text-danger d-none">Please enter the Category Name</small> *@
+                        <ValidationMessage For="@(() => category.Name)" class="text-danger" />
                     </div>
 
                     <!-- Description Field -->
@@ -36,6 +37,7 @@
                         <label for="description" class="font-weight-bold text-gray-800">Description</label>
                         <InputTextArea id="Description" class="form-control" placeholder="Enter description" @bind-value="category.Description"></InputTextArea>
                         @* <small class="text-danger d-none">Please enter the Description</small> *@
+                        <ValidationMessage For="@(() => category.Description)" class="text-danger" />
                     </div>
 
                     <!-- Slug Field -->
@@ -43,6 +45,7 @@
                         <label for="slug" class="font-weight-bold text-gray-800">Slug (e.g., remote-job)</label>
                         <InputText id="slug" class="form-control" placeholder="Enter slug" @bind-Value="category.slug"></InputText>
                         @* <small class="text-danger d-none">Please enter the Slug (e.g., remote-job)</small> *@
+                        <ValidationMessage For="@(() => category.slug)" class="text-danger" />
                     </div>
 
                     <!-- Submit Button -->
@@ -65,7 +68,7 @@
     {
         dbContext.Categories.Add(category);
         dbContext.SaveChanges();
-
+        NavigationManager.NavigateTo("/Admin/Category/Index");
     }
 
 
