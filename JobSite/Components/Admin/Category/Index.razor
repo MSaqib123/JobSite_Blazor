@@ -1,0 +1,81 @@
+﻿@page "/Admin/Category/Index"
+
+@layout AdminLayout
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+    <a href="/Admin/Category/Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Add Category
+    </a>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Slug</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample row, to be repeated dynamically -->
+                            <tr>
+                                <td>1</td>
+                                <td>Remote Jobs</td>
+                                <td>Jobs that can be performed remotely</td>
+                                <td>remote-job</td>
+                                <td>
+                                    <a href="/Admin/CategoryForm/1" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit fa-sm text-white-50"></i> Edit
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal1">
+                                        <i class="fas fa-trash fa-sm text-white-50"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            <!-- More rows would go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal (for each row, adjust ID dynamically) -->
+<div class="modal fade" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the category "Remote Jobs"?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}
