@@ -1,4 +1,5 @@
 ﻿@page "/Admin/Category/Index"
+@rendermode InteractiveServer
 
 @inject DataDbContext dbContext;
 @layout AdminLayout
@@ -109,7 +110,7 @@
     {
         Console.WriteLine($"Delete button clicked for ID: {id}"); // Debug log
         DeleteCategoryId = id;
-        await JSRuntime.InvokeVoidAsync("$('#deleteModal').modal", "show");
+        // await JSRuntime.InvokeVoidAsync("$('#deleteModal').modal", "show");
     }
 
     private async Task ConfirmDelete()
@@ -137,7 +138,7 @@
             Message = $"Error deleting category: {ex.Message}";
             MessageType = "danger";
         }
-        await JSRuntime.InvokeVoidAsync("$('#deleteModal').modal", "hide");
+        // await JSRuntime.InvokeVoidAsync("$('#deleteModal').modal", "hide");
         StateHasChanged();
     }
 }
